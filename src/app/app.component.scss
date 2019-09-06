@@ -1,6 +1,12 @@
 :host {
   .app__container {
     height: 100vh;
+    margin: 0;
     display: flex;
+  }
+}
+::ng-deep {
+  body {
+    margin: 0;
   }
 }

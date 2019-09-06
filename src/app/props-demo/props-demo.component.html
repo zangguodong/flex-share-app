@@ -144,7 +144,7 @@
       <span class="little-tip"
         >content1=flex:1,100px;content2=flex:1,300px(container: 600px)</span
       >
-      <div class="flexbox">
+      <div class="flexbox fixlength">
         <span style="flex:1;width: 100px">content1</span>
         <span style="flex:1;width: 300px">content2</span>
       </div>
@@ -152,15 +152,30 @@
       <span class="little-tip"
         >content1=flex:1,200px;content2=flex:1,800px(container: 600px)</span
       >
-      <div class="flexbox">
+      <div class="flexbox fixlength">
         <span style="flex:1;width: 200px">content1</span>
         <span style="flex:1;width: 800px">content2</span>
       </div>
 
-      <span class="little-tip">content1=flex:1 0 100px;content2=flex:1</span>
-      <div class="flexbox">
-        <span style="flex:1 0 100px;">content1</span>
-        <span style="flex:1;">content2</span>
+      <span class="little-tip">grow与shrink的计算差异</span>
+      <span class="tip"
+        >freespace: 600-200 = 400px;按各flex比例分配给各basis</span
+      >
+      <div class="flexbox fixlength">
+        <span style="flex:1 0 200px;">content1</span>
+        <span style="flex:1 0 0;">content2</span>
+      </div>
+      <span class="tip"
+        >shrinkspace: 1000-600 =
+        400px;各item先求自己basis占总basis比例，如0.4,0.6,乘shrink系数，并归一化，再乘以shrinkspace</span
+      >
+      <span class="tip"
+        >如400/1000=0.4,600/1000=0.6,0.4 *
+        1=0.4,0.6*2=1.2,另0.4与1.2同比收缩，令相加为1,得0.25,0.75，分别乘400
+      </span>
+      <div class="flexbox fixlength">
+        <span style="flex:0 1 400px;">content1</span>
+        <span style="flex:0 2 600px;">content2</span>
       </div>
     </ng-template>
   </ng-container>

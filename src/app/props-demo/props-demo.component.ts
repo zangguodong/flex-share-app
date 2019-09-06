@@ -124,9 +124,15 @@ display: flex;align-content: space-between;">
 </div>
 
 <div style="display: flex">
-  <span style="flex:1 0 100px;">content1</span>
-  <span style="flex:1;">content2</span>
-</div>`);
+  <span style="flex:1 0 200px;">content1</span>
+  <span style="flex:1 0 0;">content2</span>
+</div>
+
+<div style="display: flex">
+  <span style="flex:0 1 400px;">content1</span>
+  <span style="flex:0 2 600px;">content2</span>
+</div>
+`);
         break;
       }
     }

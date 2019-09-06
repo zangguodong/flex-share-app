@@ -1,15 +1,63 @@
-<div
-  fxLayout="row wrap"
-  style="width: 300px;border: 1px solid;"
-  fxLayoutGap="10px"
+<span class="prop-title">Containers</span>
+<span class="tip">fxLayout: 'row';'row wrap'</span>
+<div fxLayout="row wrap" style="border: 1px solid">
+  <div fxFlex="50%">item1</div>
+  <div fxFlex="50%">item2</div>
+  <div fxFlex="50%">item3</div>
+</div>
+<span class="tip">fxLayoutGap: '10px';'calc(50% - 10px)';</span>
+<div fxLayout="column" fxLayoutGap="calc(10px)">
+  <div>item1</div>
+  <div>item2</div>
+</div>
+<span class="tip">fxLayoutAlign: 'space-around center';</span>
+<div fxLayout fxLayoutAlign="space-around center" style="height: 30px">
+  <div>item1</div>
+  <div>item2</div>
+</div>
+
+<span class="prop-title">Items</span>
+<span class="tip">fxFlex: '1 1 20px',不设置为'1 1 0%'</span>
+<span class="tip"
+  >fxFlex与预计flex属性不完全一样
+  grow为0，basis为max-width,shrink为0，basis为min-width，当grow和shrink都不为0，则同时限制了min/max-width</span
 >
-  <!--  <div style="margin-right: 10px">test1</div>-->
-  <!--  <div style="margin-right: 10px">test2</div>-->
-  <!--  <div style="margin-right: 10px">test3</div>-->
-  <div fxFlex="100px">test4</div>
-  <div fxFlex="100px">test5</div>
-  <div fxFlex="100px">test5</div>
-  <div fxFlex="100px">test5</div>
-  <div fxFlex="100px">test5</div>
-  <div fxFlex="100px">test5</div>
+<div fxLayout>
+  <div fxFlex>item0</div>
+  <div fxFlex="0 1 100px">item1</div>
+  <div fxFlex="1 0 100px">item2</div>
+  <div fxFlex="1 1 0%">item3</div>
+  <div fxFlex="1 1 100px">item4</div>
+</div>
+<div fxLayout>
+  <div style="flex: 1 1 0%;">item0</div>
+  <div style="flex: 0 1 100px;">item1</div>
+  <div style="flex: 1 0 100px;">item2</div>
+  <div style="flex: 1 1 0;">item3</div>
+  <div style="flex: 1 1 100px;">item4</div>
+</div>
+<span class="tip">fxFlexOrder: '2',同flex-order</span>
+<span class="tip">fxFlexOffset: '20px'</span>
+<div fxLayout>
+  <div fxFlexOffset="20px">item0</div>
+  <div fxFlexOffset="20px">item1</div>
+</div>
+<span class="tip">fxFlexAlign: 'center',同align-self</span>
+<div fxLayout style="height: 50px;border: 1px solid" fxLayoutAlign="stretch">
+  <div fxFlexAlign="center">item0</div>
+</div>
+<span class="tip">fxFlexFill: 撑满容器</span>
+<div fxLayout="row wrap">
+  <div style="background: red" fxFlexFill>item0</div>
+  <div style="background: green">item1</div>
+</div>
+
+<span class="tip">flex-layout库真正强大的在与自适应布局，同时引入了</span>
+<span class="tip">[fxShow.xs]='true | false'</span>
+<span class="tip">[fxHide.xs]='true | false'</span>
+<span class="tip">[ngClass.xs]='《'button':btnStyle》'</span>
+<span class="tip">[ngStyle.xs]='《color:red》'</span>
+<div fxLayout fxLayout.xs="column" fxLayoutGap="10px">
+  <div [ngStyle.xs]="{ color: 'red' }">some text</div>
+  <div [ngStyle.xs]="{ color: 'red' }">some text</div>
 </div>

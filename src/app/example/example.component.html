@@ -25,7 +25,12 @@
         <span>一些内容-></span> 按道理有了white-space合并，前面有单个空格啊
       </div>
       <button (click)="show()">show hint</button>
-      <div fxLayout="row" fxLayoutAlign="start stretch" style="height: 50px;border: 1px solid" *ngIf="showHint">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start stretch"
+        style="height: 50px;border: 1px solid"
+        *ngIf="showHint"
+      >
         <div style="border-radius: 5px;background: burlywood">flex-item1</div>
         <div style="border-radius: 5px;background: dodgerblue">flex-item2</div>
       </div>
@@ -125,9 +130,9 @@
         ></div>
       </div>
       some other content
-      <span class="tip"
-        >提示：这里是因为外层的div生成了一个新的BFC，参与了外层的BFC排列，他自身的margin为0，外层BFC只看他的margin，而从上往下依次排列，因此这个div不会影响其他文档元素</span
-      >
+      <span class="tip">
+        提示：这里是因为外层的div生成了一个新的BFC，参与了外层的BFC排列，他自身的margin为0，外层BFC只看他的margin，而从上往下依次排列，因此这个div不会影响其他文档元素
+      </span>
     </ng-template>
   </ng-container>
 </div>

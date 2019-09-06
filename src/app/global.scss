@@ -33,7 +33,10 @@ div.flexbox {
   margin-bottom: 10px;
   width: 100%;
 }
-
+.flexbox.fixlength{
+  max-width: 600px;
+  min-width: 600px;
+}
 .flexbox span {
   background-color: red;
   &:nth-child(2n) {
