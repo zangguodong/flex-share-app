@@ -1,0 +1,53 @@
+<select [(ngModel)]="selectIfc" name="selectIfc" (ngModelChange)="changeIfc($event)">
+  <option [value]="IFC_CONTENT_TYPE.INLINE_HEIGHT">{{
+    IFC_CONTENT_TYPE.INLINE_HEIGHT
+  }}</option>
+  <option [value]="IFC_CONTENT_TYPE.NO_CONTENT">{{
+    IFC_CONTENT_TYPE.NO_CONTENT
+  }}</option>
+  <option [value]="IFC_CONTENT_TYPE.WRAP">{{ IFC_CONTENT_TYPE.WRAP }}</option>
+  <option [value]="IFC_CONTENT_TYPE.IFC_WITH_BFC">{{
+    IFC_CONTENT_TYPE.IFC_WITH_BFC
+  }}</option>
+</select>
+<div class="content__wrapper">
+  <ng-container [ngSwitch]="selectIfc">
+    <ng-template [ngSwitchCase]="IFC_CONTENT_TYPE.INLINE_HEIGHT">
+      <div style="padding: 10px;text-align: center;border: 1px dotted red;">
+        <span style="border: 1px solid;margin-right: 3px;line-height: 100px;"
+          >content1 变化我的vertical-align</span
+        >
+        <span style="border: 1px solid;margin-right: 3px">content2 初始值</span>
+        <span style="border: 1px solid;margin-right: 3px;vertical-align: bottom"
+          >content3 bottom</span
+        >
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="IFC_CONTENT_TYPE.WRAP">
+      <div style="white-space: nowrap">
+        我是一个超长的内容，到了line-box边界可能要折行，我是一个超长的内容，到了line-box边界可能要折行，我是一个超长的内容，到了line-box边界可能要折行，我是一个超长的内容，到了line-box边界可能要折行我是一个超长的内容，到了line-box边界可能要折行
+      </div>
+      <div>
+        我是一个超长的内容，到了line-box边界可能要折行，我是一个超长的内容，到了line-box边界可能要折行，我是一个超长的内容，到了line-box边界可能要折行，我是一个超长的内容，到了line-box边界可能要折行我是一个超长的内容，到了line-box边界可能要折行
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="IFC_CONTENT_TYPE.NO_CONTENT">
+      <div style="line-height: 100px;border: 1px solid;margin-bottom: 20px">
+        一些内容
+      </div>
+      <div style="line-height: 100px;border: 1px solid;"><span></span></div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="IFC_CONTENT_TYPE.IFC_WITH_BFC">
+      <div style="border: 1px solid;margin-bottom: 20px">
+        <span>"一些内容"</span>
+        <span>"其他内容，试试将我弄成inline-block"
+        <div style="line-height: 50px;">"block元素的内容"</div>
+    </span>
+        <span>"一些内容"</span>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>

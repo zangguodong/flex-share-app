@@ -1,0 +1,23 @@
+:host {
+  width: fit-content;
+  padding: 4px 10px;
+  flex: 0;
+  min-width: 200px;
+  background-color: oldlace;
+  .nav__title{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 0 20px 0;
+  }
+  .nav__item {
+    padding: 5px 2px;
+    margin-bottom: 15px;
+    background-color: #009ce3;
+    a {
+      display: block;
+      height: 100%;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}

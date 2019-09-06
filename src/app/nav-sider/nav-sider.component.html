@@ -1,0 +1,4 @@
+<div class="nav__title">Flex Demo</div>
+<div *ngFor="let route of routeConfig" class="nav__item">
+  <a [routerLink]="route.path">{{ route.nav_name }}</a>
+</div>

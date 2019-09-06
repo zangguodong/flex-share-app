@@ -1,0 +1,46 @@
+span.prop-title {
+  display: block;
+  font-size: 20px;
+  font-family: "PingFang SC", serif;
+}
+.content__wrapper {
+  margin-top: 20px;
+}
+span.prop-title:before {
+  content: ">>>";
+  margin-right: 10px;
+}
+
+div + .prop-title {
+  margin-top: 30px;
+}
+
+.tip {
+  color: #222;
+  padding: 4px;
+  display: block;
+  border: 1px dotted steelblue;
+  margin: 10px 0;
+}
+.little-tip {
+  color: midnightblue;
+  font-size: 14px;
+}
+div.flexbox {
+  height: 80px;
+  display: flex;
+  border: 1px solid;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.flexbox span {
+  background-color: red;
+  &:nth-child(2n) {
+    background-color: green;
+  }
+}
+
+.content-margin span {
+  margin-bottom: 20px;
+}

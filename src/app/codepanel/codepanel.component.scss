@@ -1,0 +1,20 @@
+:host {
+  flex: 0 0 auto;
+  background-color: oldlace;
+  white-space: pre;
+  display: flex;
+  justify-self: flex-end;
+  .drag-bar {
+    width: 2px;
+    border: 1px dotted;
+    flex: none;
+    margin-right: 10px;
+    align-self: stretch;
+    &:hover {
+      cursor: ew-resize;
+    }
+    &.active {
+      border-color: red;
+    }
+  }
+}

@@ -1,0 +1,167 @@
+<select
+  [(ngModel)]="selectProp"
+  name="selectProp"
+  (ngModelChange)="changeProp($event)"
+>
+  <option [value]="PROP_CONTENT_TYPE.ALIGN_SELF">{{
+    PROP_CONTENT_TYPE.ALIGN_SELF
+  }}</option>
+  <option [value]="PROP_CONTENT_TYPE.FlexFlow">{{
+    PROP_CONTENT_TYPE.FlexFlow
+  }}</option>
+  <option [value]="PROP_CONTENT_TYPE.MARGIN">{{
+    PROP_CONTENT_TYPE.MARGIN
+  }}</option>
+  <option [value]="PROP_CONTENT_TYPE.ZINDEX">{{
+    PROP_CONTENT_TYPE.ZINDEX
+  }}</option>
+  <option [value]="PROP_CONTENT_TYPE.FLEX">{{ PROP_CONTENT_TYPE.FLEX }}</option>
+</select>
+<div class="content__wrapper">
+  <ng-container [ngSwitch]="selectProp">
+    <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.ALIGN_SELF">
+      <span class="prop-title"
+        >展示align-self可以覆盖父元素的align-items效果</span
+      >
+      <div class="flexbox align-end__container">
+        <span>content</span>
+        <span class="self-want-stretch">content stretch</span>
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.FlexFlow">
+      <span class="prop-title">真正决定排列方向的属性flex-flow</span>
+      <span class="little-tip">flex-flow: column wrap;height: 80px;</span>
+      <div class="flexbox" style="flex-flow: column wrap;height: 80px;">
+        <span>test1</span>
+        <span>test2</span>
+        <span>test3</span>
+        <span>test4</span>
+        <span>test5</span>
+      </div>
+      <span class="little-tip"
+        >flex-flow: column wrap-reverse;height: 80px;</span
+      >
+      <div class="flexbox" style="flex-flow: column wrap-reverse;height: 80px;">
+        <span>test1</span>
+        <span>test2</span>
+        <span>test3</span>
+        <span>test4</span>
+        <span>test5</span>
+      </div>
+      <span class="little-tip">bonus: align-content</span>
+      <div
+        class="flexbox"
+        style="flex-flow: column wrap;height: 80px;align-content: space-between"
+      >
+        <span>test1</span>
+        <span>test2</span>
+        <span>test3</span>
+        <span>test4</span>
+        <span>test5</span>
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.MARGIN">
+      <span class="prop-title"
+        >展示margin的用法(container: flex-direction: column;)</span
+      >
+      <span class="tip"
+        >注意margin的纳入计算在align-items与justify-content之前</span
+      >
+      <div class="flexbox" style="flex-direction: column;margin-left: 100px">
+        <span>initial</span>
+        <span style="margin-left:auto">margin-left:auto</span>
+        <span style="margin:auto">margin:auto</span>
+        <span style="margin:auto;width: 800px">margin:auto;width: 800px</span>
+        <span style="align-self:center;width: 800px"
+          >align-self:center;width: 800px</span
+        >
+      </div>
+      <div style="display: flex;margin-top: 40px" class="flexbox">
+        <span style="margin-right: 10px;width: 40px"></span
+        ><span style="width: 40px"></span
+        ><span style="margin-left: auto;margin-right: 10px;width: 40px"></span>
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.ZINDEX">
+      <span class="prop-title">展示z-index问题</span>
+      <span class="little-tip">Flex box下的z-index</span>
+      <div class="flexbox">
+        <span style="z-index: 1;">z index is 1</span>
+        <span style="z-index: 0;position: relative;left: -20px">z index 0</span>
+      </div>
+
+      <div style="height: 80px;width:600px;border: 1px solid;">
+        <div
+          style="z-index: 1;background: red;height:100%;display: inline-block;"
+        >
+          z index is 1
+        </div>
+        <div
+          style="z-index: 0;background: green;height:100%;display: inline-block;position: relative;left: -20px"
+        >
+          z index 0
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.FLEX">
+      <span class="prop-title">展示flex属性用法</span>
+      <span class="tip"
+        >flex默认值为0 1 auto,分别对应flex-grow,flex-shrink,flex-basis
+        <br />
+        flex属性的用法
+        <br />
+        flex: none === 0 0 auto
+        <br />
+        flex: initial === 0 1 auto
+        <br />
+        flex: auto === 1 1 auto
+        <br />
+        flex: positive-number === num 1 0
+      </span>
+      <div class="flexbox">
+        <span>content1</span>
+        <span>content2</span>
+      </div>
+      <span class="little-tip">content1=flex:1</span>
+      <div class="flexbox">
+        <span style="flex:1;">content1</span>
+        <span>content2</span>
+      </div>
+      <span class="little-tip">content1=flex:1;content2=flex:1</span>
+      <div class="flexbox">
+        <span style="flex:1;">content1</span>
+        <span style="flex:1;">content2</span>
+      </div>
+      <span class="tip"
+        >事实上，上述例子items均为flex:1，其中的flex-basis为0，达到了全部元素均匀分配空间的效果，如果items分配后，还剩余自由空间，这种效果会比较明显
+        <br />
+        因此，当我们需要在不知道子元素真实宽度时，而希望收缩至完全等宽，可以采用flex:1（若其中某个需要宽点，可以flex:2）
+      </span>
+      <span class="little-tip"
+        >content1=flex:1,100px;content2=flex:1,300px(container: 600px)</span
+      >
+      <div class="flexbox">
+        <span style="flex:1;width: 100px">content1</span>
+        <span style="flex:1;width: 300px">content2</span>
+      </div>
+
+      <span class="little-tip"
+        >content1=flex:1,200px;content2=flex:1,800px(container: 600px)</span
+      >
+      <div class="flexbox">
+        <span style="flex:1;width: 200px">content1</span>
+        <span style="flex:1;width: 800px">content2</span>
+      </div>
+
+      <span class="little-tip">content1=flex:1 0 100px;content2=flex:1</span>
+      <div class="flexbox">
+        <span style="flex:1 0 100px;">content1</span>
+        <span style="flex:1;">content2</span>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
