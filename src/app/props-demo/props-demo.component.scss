@@ -1,10 +1,10 @@
 @import "../global";
-.flexbox.align-end__container{
+.flexbox.align-end__container {
   align-items: flex-end;
-  span{
+  span {
     margin-right: 10px;
   }
-  .self-want-stretch{
+  .self-want-stretch {
     align-self: stretch;
   }
 }

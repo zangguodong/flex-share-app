@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CodepanelComponent } from "../codepanel/codepanel.component";
+import { MediaObserver } from "@angular/flex-layout";
 
 @Component({
   selector: "app-fxlayout",
@@ -7,7 +8,14 @@ import { CodepanelComponent } from "../codepanel/codepanel.component";
   styleUrls: ["./fxlayout.component.scss"]
 })
 export class FxlayoutComponent implements OnInit {
-  constructor(private codeComponent: CodepanelComponent) {}
+  constructor(
+    private codeComponent: CodepanelComponent,
+    public mediaObserver: MediaObserver
+  ) {
+    mediaObserver.media$.subscribe(value => {
+      console.log(value);
+    });
+  }
 
   ngOnInit() {
     this.codeComponent.sendCode(`fxLayout

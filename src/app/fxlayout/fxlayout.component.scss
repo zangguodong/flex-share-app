@@ -1,4 +1,40 @@
 @import "../global";
-:host{
+:host {
   overflow: auto;
+  .card-container {
+    flex-basis: content;
+    max-width: 150%;
+    //flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .card {
+    height: 200px;
+    width: 300px;
+    max-height: 400px;
+    min-height: 200px;
+    border: 1px solid;
+    background: red;
+    margin-bottom: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .container {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+  .big-size {
+    width: 500px;
+  }
+  .middle-size {
+    width: 300px;
+  }
+  .small-size {
+    width: 200px;
+  }
 }

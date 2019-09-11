@@ -16,6 +16,9 @@
     PROP_CONTENT_TYPE.ZINDEX
   }}</option>
   <option [value]="PROP_CONTENT_TYPE.FLEX">{{ PROP_CONTENT_TYPE.FLEX }}</option>
+  <option [value]="PROP_CONTENT_TYPE.FlexItemWidth">{{
+    PROP_CONTENT_TYPE.FlexItemWidth
+  }}</option>
 </select>
 <div class="content__wrapper">
   <ng-container [ngSwitch]="selectProp">
@@ -24,7 +27,9 @@
         >展示align-self可以覆盖父元素的align-items效果</span
       >
       <div class="flexbox align-end__container">
-        <span>content</span>
+        <span>content1</span>
+        <span>content2</span>
+        <span>content3</span>
         <span class="self-want-stretch">content stretch</span>
       </div>
     </ng-template>
@@ -105,6 +110,18 @@
           z index 0
         </div>
       </div>
+      <span class="tip">
+        堆叠上下文的概念: 事实上,每个盒子都属于一个Stacking Context,
+        root元素以及zIndex不为auto的创建一个
+      </span>
+      <div style="z-index: 5;position: relative;background: red">
+        content bottom
+        <div
+          style="z-index: -1;position: relative;display: inline-block;left: -20px;background: green"
+        >
+          overlap it
+        </div>
+      </div>
     </ng-template>
 
     <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.FLEX">
@@ -177,6 +194,71 @@
         <span style="flex:0 1 400px;">content1</span>
         <span style="flex:0 2 600px;">content2</span>
       </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="PROP_CONTENT_TYPE.FlexItemWidth">
+      <span class="prop-title">展示FFC下Flex Item的宽度计算规则</span>
+      <span class="tip"
+        >1: 计算flex base的大小（此时不使用item的max/min尺寸限制）</span
+      >
+      <ul>
+        <li>A: 明确指定flex basis，如flex-basis:500px</li>
+        <li>
+          B: flex item指定了内部宽高比，交叉轴大小，且flex
+          basis的计算值为content，则按比例对宽高比和cross size进行计算
+        </li>
+        <li>C: 若依赖于容器宽度，则根据容器的宽度进行计算</li>
+        <li>
+          D: 使用flex
+          basis替代主尺寸进行计算(如水平模式下的width)，此时basis若值为content，则认为是max-content
+        </li>
+      </ul>
+
+      <div fxLayout="column">
+        <div
+          style="flex-basis: content;width: 100px;background: red;height: 400px"
+        >
+          <div style="padding-bottom: 30%;"></div>
+        </div>
+      </div>
+
+      <span class="tip">2: 将flex item一个个收集到flex line(s)中</span>
+      <ul>
+        <li>A: 单行</li>
+        <li>B: 多行</li>
+      </ul>
+      <div class="flexbox fixlength" style="align-items: flex-start">
+        <div style="width: 250px;flex: none;border: 1px solid red;">
+          flex base 250px
+        </div>
+        <div style="width: 250px;flex: none;border: 1px solid red;">
+          flex base 250px
+        </div>
+        <div style="width: 250px;flex: none;border: 1px solid red;">
+          flex base 250px
+        </div>
+      </div>
+      <div
+        class="flexbox fixlength"
+        style="flex-wrap: wrap;align-content: start"
+      >
+        <div style="width: 250px;flex: none;background:  red;">
+          flex base 250px
+        </div>
+        <div style="width: 250px;flex: none;background: green;">
+          flex base 250px
+        </div>
+        <div style="width: 250px;flex: none;background: gray;">
+          flex base 250px
+        </div>
+        <div style="width: 750px;flex: none;background: red;">
+          flex base 750px
+        </div>
+      </div>
+      <span class="tip">3: 根据flex growth/shrink的系数进行伸缩</span>
+      <span class="tip"
+        >4: 采用flex item的min/max大小限制,如max-width:300px</span
+      >
     </ng-template>
   </ng-container>
 </div>

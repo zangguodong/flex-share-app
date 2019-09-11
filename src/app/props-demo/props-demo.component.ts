@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CodepanelComponent } from "../codepanel/codepanel.component";
 
 enum PROP_CONTENT_TYPE {
+  FlexItemWidth = "item宽度计算",
   ALIGN_SELF = "align-self覆盖",
   MARGIN = "margin用法",
   ZINDEX = "z-index效果",
@@ -61,6 +62,13 @@ export class PropsDemoComponent implements OnInit {
   </div>
   <div style="z-index: 0;display: inline-block;position: relative;left: -20px">
     z index 0
+  </div>
+</div>
+
+<div style="z-index: 5;position: relative;background: red">
+  content bottom
+  <div style="z-index: -1;position: relative;left: -20px;background: green">
+    overlap it
   </div>
 </div>`);
         break;
@@ -134,6 +142,23 @@ display: flex;align-content: space-between;">
 </div>
 `);
         break;
+      }
+      case PROP_CONTENT_TYPE.FlexItemWidth: {
+        this.codePanel.sendCode(`1.A
+<div fxLayout>
+  <div style="flex-basis: 400px"></div>
+</div>
+
+1.B
+<div style="flex-basis: content;width: 100px;height: 400px">
+  <div style="padding-bottom: 30%;"></div>
+</div>
+
+1.C
+<div fxLayout>
+  <div style="flex-basis: 30%"></div>
+</div>
+`);
       }
     }
   }
